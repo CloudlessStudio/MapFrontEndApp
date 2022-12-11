@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+
+        
+
+        <style>
+            .main-container{
+                margin: auto;
+                width: 50%;
+                text-align: center;
+
+            }
+            .map{
+                margin: auto;
+                height: 400px;
+                width: 400px;
+            }
+
+            .nation-name{
+                font-size: 50px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div class ="main-container">
+            <div class="Title">
+                <h1>Country Info</h1>
+            </div>
+            <div class="map" id ="map"></div>
+            <div class="facts-container" id="facts-container">
+                <div class ="nation" id="nation-name">
+                    
+                </div>
+            </div>
+        </div>
+        <script src="CountryInfoScript.js">
+
+        </script>
+    </body>
+</html>
