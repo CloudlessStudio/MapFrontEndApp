@@ -25,7 +25,7 @@ function onMapClick(e) {
     let LONGITUDE = loc.lng.toString().slice(0, 5);
     popup
         .setLatLng(loc)
-        .setContent("This location is: " + loc.lat.toString()+","+loc.lng.toString())     //show user where they clicked
+        .setContent("This location is: " + LATITUDE+","+LONGITUDE)     //show user where they clicked
         .openOn(map);   //show this on the map
     callGeoNamesApi(LATITUDE,LONGITUDE);  //call geonames api
     
