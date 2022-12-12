@@ -19,14 +19,25 @@
 
             }
             .map{
-                margin: auto;
+                /* margin: auto; */
                 height: 400px;
                 width: 400px;
+    
             }
 
             .nation-name{
                 font-size: 50px;
             }
+            .horizontal-container{
+                display: flex;
+               border-radius: 5px;
+                border-width: 5px;
+                border-style: solid;
+                color: #000;
+            }
+            .facts-container{
+ 
+              }
         </style>
 
     </head>
@@ -36,10 +47,11 @@
             <div class="Title">
                 <h1>Country Info</h1>
             </div>
-            <div class="map" id ="map"></div>
-            <div class="facts-container" id="facts-container">
-                <div class ="nation" id="nation-name">
-                    
+            <div class ="horizontal-container" id="hor-con">
+                <div class="map" id ="map"></div>
+                <div class="facts-container" id="facts-container">
+                    <div class ="nation" id="nation-name"> 
+                    </div>
                 </div>
             </div>
         </div>
