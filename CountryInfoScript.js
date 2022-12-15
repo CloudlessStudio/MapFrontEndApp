@@ -32,8 +32,6 @@ function onMapClick(e) {
 }
 
 function callGeoNamesApi(LT,LN){   // call geonames api with lat and lon values from our map
-
-
     console.log("http://api.geonames.org/countrySubdivisionJSON?lat="+LT+"&lng="+LN+"&username=cloudlessstudio") //test case
     fetch("http://api.geonames.org/countrySubdivisionJSON?lat="+LT+"&lng="+LN+"&username=cloudlessstudio") //get the name data of our country based on lat and lon
     .then((r) => r.json())  //convert d for data into json obj
@@ -41,13 +39,55 @@ function callGeoNamesApi(LT,LN){   // call geonames api with lat and lon values 
         showName(response)  //call show name function based on data
     })
 }
+
+function callRestCountriesApi(name){
+    let name_full = name.split(" ");
+    let n = ""
+    for(let i in name_full){
+        n+= name_full[i];
+    }
+    console.log("https://restcountries.com/v3.1/name/"+n) //print correct api link
+    fetch("https://restcountries.com/v3.1/name/"+n)  // rest countries api + nation name
+    .then((r)=>r.json())
+    .then((response)=>{
+        showInfo(response)              //call show info fucntion
+    })
+}
+///https://restcountries.com/v3.1/name/
 //so far as of 12/10/22 it is very slow and often throws erros if not selecting a proper country...
 function showName(apiResponse){
     const nationBox = document.getElementById("nation-name"); //get nation name container in HTML
     const countryName= apiResponse.countryName; ///get country name 
     console.log(countryName);
     nationBox.innerText = countryName;  //put country name into the div
+    callRestCountriesApi(countryName); //call the other api 'rest countries' and pass the country name as param
 }
 
+function showInfo(apiResponse){                                    //create references to div elements for facts
+    const flagBox = document.getElementById("nation-flag");
+    const langBox = document.getElementById("nation-lan");
+    const populationBox = document.getElementById("nation-pop");
+    const currencyBox = document.getElementById("nation-cur");
+    const areaBox = document.getElementById("nation-area");
+    const carBox = document.getElementById("nation-car");
+    const capitalBox = document.getElementById("nation-capital");
+    ////WORK IN PROGRESS
+    const flag = apiResponse.flags;                  //get specific facts from api
+    const lang = apiResponse.languages;
+    const population = apiResponse.population;
+    const currency = apiResponse.currencies;
+    const area = apiResponse.area;
+    const car = apiResponse.car;
+    const capital = apiResponse.capital;
+
+    console.log(flag);
+    console.log(lang);
+    console.log(population);
+    console.log(currency);
+    console.log(area);
+    console.log(car);
+    console.log(capital);
+
+}
 
 
