@@ -67,6 +67,7 @@ function showInfo(apiResponse){
     const nation = document.getElementById("nation-name").innerText;
     console.log(nation);                                 //create references to div elements for facts
     const flagBox = document.getElementById("nation-flag");
+    const flagSrc = document.getElementById("flag-src");
     const langBox = document.getElementById("nation-lan");
     const populationBox = document.getElementById("nation-pop");
     const currencyBox = document.getElementById("nation-cur");
@@ -84,21 +85,43 @@ function showInfo(apiResponse){
     
     console.log(apiResponse);
     for(let i in apiResponse){
-       capital = apiResponse[i].capital[0];
-       lang = apiResponse[i].languages;
+       capital = apiResponse[0].capital;
+       lang = Object.values(apiResponse[0].languages);
+       population = apiResponse[0].population;
+       flag = apiResponse[0].flags.png;
+       currency = Object.values(apiResponse[0].currencies)[0].name;
+        area = apiResponse[0].area;
+        car = apiResponse[0].car.side;
     }
     
     
-    
+    flagSrc.src = flag;
+    for(let j in lang){
+        if(lang.length >=3){
+            langBox.innerText = lang[0]+" "+lang[1]+" "+lang[2];
+        }
+        else if(lang.length ==2){
+            langBox.innerText = lang[0]+" "+lang[1];
+        }
+        else{
+            langBox.innerText = lang[0];
+        }
+        
+    }
+    populationBox.innerText = population;
+    currencyBox.innerText = currency;
+    areaBox.innerText = area;
+    carBox.innerText = car;
+    capitalBox.innerText =capital;
 
 
 
-    //  console.log(flag);
+    console.log(flag);
      console.log(lang);
-    //  console.log(population);
-    //  console.log(currency);
-    //  console.log(area);
-    //  console.log(car);
+     console.log(population);
+    console.log(currency);
+      console.log(area);
+     console.log(car);
     console.log(capital);
 
 }
