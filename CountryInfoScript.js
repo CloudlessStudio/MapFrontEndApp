@@ -41,13 +41,13 @@ function callGeoNamesApi(LT,LN){   // call geonames api with lat and lon values 
 }
 
 function callRestCountriesApi(name){
-    let name_full = name.split(" ");
-    let n = ""
-    for(let i in name_full){
-        n+= name_full[i];
-    }
-    console.log("https://restcountries.com/v3.1/name/"+n) //print correct api link
-    fetch("https://restcountries.com/v3.1/name/"+n)  // rest countries api + nation name
+    // let name_full = name.split(" ");
+    // let n = ""
+    // for(let i in name_full){
+    //     n+= name_full[i];
+    // }
+    console.log("https://restcountries.com/v3.1/name/"+name) //print correct api link
+    fetch("https://restcountries.com/v3.1/name/"+name)  // rest countries api + nation name
     .then((r)=>r.json())
     .then((response)=>{
         showInfo(response)              //call show info fucntion
@@ -63,7 +63,9 @@ function showName(apiResponse){
     callRestCountriesApi(countryName); //call the other api 'rest countries' and pass the country name as param
 }
 
-function showInfo(apiResponse){                                    //create references to div elements for facts
+function showInfo(apiResponse){   
+    const nation = document.getElementById("nation-name").innerText;
+    console.log(nation);                                 //create references to div elements for facts
     const flagBox = document.getElementById("nation-flag");
     const langBox = document.getElementById("nation-lan");
     const populationBox = document.getElementById("nation-pop");
@@ -72,20 +74,31 @@ function showInfo(apiResponse){                                    //create refe
     const carBox = document.getElementById("nation-car");
     const capitalBox = document.getElementById("nation-capital");
     ////WORK IN PROGRESS
-    const flag = apiResponse.flags;                  //get specific facts from api
-    const lang = apiResponse.languages;
-    const population = apiResponse.population;
-    const currency = apiResponse.currencies;
-    const area = apiResponse.area;
-    const car = apiResponse.car;
-    const capital = apiResponse.capital;
+    let capital = "";
+    let flag = "";
+    let currency = "";
+    let lang ="";
+    let population ="";
+    let car = "";
+    let area ="";
+    
+    console.log(apiResponse);
+    for(let i in apiResponse){
+       capital = apiResponse[i].capital[0];
+       lang = apiResponse[i].languages;
+    }
+    
+    
+    
 
-    console.log(flag);
-    console.log(lang);
-    console.log(population);
-    console.log(currency);
-    console.log(area);
-    console.log(car);
+
+
+    //  console.log(flag);
+     console.log(lang);
+    //  console.log(population);
+    //  console.log(currency);
+    //  console.log(area);
+    //  console.log(car);
     console.log(capital);
 
 }
