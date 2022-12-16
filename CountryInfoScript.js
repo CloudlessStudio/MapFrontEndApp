@@ -6,6 +6,7 @@
 
 //read docs of this api at https://leafletjs.com/reference.html
 //--------------------------------------------------------------
+let j = 0; //global var for looping through the countries
 var map = L.map('map').setView([51.505, -0.09], 5);  ///initialize map start point is england. 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 maxZoom: 19,
@@ -40,12 +41,22 @@ function callGeoNamesApi(LT,LN){   // call geonames api with lat and lon values 
     })
 }
 
-// FIXME: fix undefined error
+
 // TODO: add time out on first api call
 // TODO: modal instead of alert
 // https://colors.muz.li/
 
 function callRestCountriesApi(name){
+        if(name == "Congo Republic"){
+        name = "Republic of the Congo";   //congo fix
+        j = 1;                            //getting the second nation in list
+        }
+        else if(name == "Iran"){           //iran bug
+        j = 1;                             //getting the second nation in list
+        }
+        else{
+        j = 0;   //getting the first nation in list
+        }
         console.log("https://restcountries.com/v3.1/name/"+name) //print correct api link
         fetch("https://restcountries.com/v3.1/name/"+name)  // rest countries api + nation name
         .then((r)=>r.json())
@@ -91,27 +102,26 @@ function showInfo(apiResponse){
     let car = "";
     let area ="";
     
-    // FIXME: IRAN bug
-    // FIXME: CONGO bug
+
     console.log(apiResponse);          
     for(let i in apiResponse){                //loop through the json api response
-       capital = apiResponse[0].capital;                            // first capital
-       lang = Object.values(apiResponse[0].languages);         //get all languages in an array
-       population = apiResponse[0].population;          //get first population
-       flag = apiResponse[0].flags.png;           //get flag
-       currency = Object.values(apiResponse[0].currencies)[0].name;        //get currency name first item, in array
-        area = apiResponse[0].area;                   //get first area
-        car = apiResponse[0].car.side;                //get first car side
+       capital = apiResponse[j].capital;                            // first capital
+       lang = Object.values(apiResponse[j].languages);         //get all languages in an array
+       population = apiResponse[j].population;          //get first population
+       flag = apiResponse[j].flags.png;           //get flag
+       currency = Object.values(apiResponse[j].currencies)[0].name;        //get currency name first item, in array
+        area = apiResponse[j].area;                   //get first area
+        car = apiResponse[j].car.side;                //get first car side
     }
     
     
     flagSrc.src = flag;                               //show the flag src 
     for(let j in lang){                                               //show the languages based on how many there are
         if(lang.length >=3){
-            langBox.innerText = lang[0]+" "+lang[1]+" "+lang[2];          //show 3 languages
+            langBox.innerText = lang[0]+", "+lang[1]+", "+lang[2];          //show 3 languages
         }
         else if(lang.length ==2){
-            langBox.innerText = lang[0]+" "+lang[1];   //show 2 languages
+            langBox.innerText = lang[0]+", "+lang[1];   //show 2 languages
         }
         else{
             langBox.innerText = lang[0];              //show one language
