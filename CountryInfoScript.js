@@ -1,5 +1,5 @@
 ///for anyone editing this file, please write detailed documentation...
-///As of 12/10/2022 we are using the leaflet, openstreetmap, and geonames api
+///As of 12/15/2022 we are using the leaflet, openstreetmap, restcountries and geonames api
 ///The current purpose of this app is to get a location and based on that location, get the country and receive the facts
 ///about the country
 ///For the geonames api we will use the code CloudlessStudio as it is registered to that account 
@@ -40,33 +40,41 @@ function callGeoNamesApi(LT,LN){   // call geonames api with lat and lon values 
     })
 }
 
+// FIXME: fix undefined error
+// TODO: add time out on first api call
+// TODO: modal instead of alert
+// https://colors.muz.li/
+
 function callRestCountriesApi(name){
-    // let name_full = name.split(" ");
-    // let n = ""
-    // for(let i in name_full){
-    //     n+= name_full[i];
-    // }
-    console.log("https://restcountries.com/v3.1/name/"+name) //print correct api link
-    fetch("https://restcountries.com/v3.1/name/"+name)  // rest countries api + nation name
-    .then((r)=>r.json())
-    .then((response)=>{
-        showInfo(response)              //call show info fucntion
-    })
-}
+        console.log("https://restcountries.com/v3.1/name/"+name) //print correct api link
+        fetch("https://restcountries.com/v3.1/name/"+name)  // rest countries api + nation name
+        .then((r)=>r.json())
+        .then((response)=>{
+            showInfo(response)              //call show info fucntion
+        })
+    }
+
+
 ///https://restcountries.com/v3.1/name/
-//so far as of 12/10/22 it is very slow and often throws erros if not selecting a proper country...
+//so far as of 12/15/22 it is okay speed, sometimes api times out
 function showName(apiResponse){
     const nationBox = document.getElementById("nation-name"); //get nation name container in HTML
     const countryName= apiResponse.countryName; ///get country name 
-    console.log(countryName);
-    nationBox.innerText = countryName;  //put country name into the div
-    callRestCountriesApi(countryName); //call the other api 'rest countries' and pass the country name as param
+    if(countryName == "Antarctica" || countryName === undefined){                  //check if stuff is undefined
+        alert("You either clicked an ocean, Antarctica or we are having issues... try again soon!");
+    }
+    else{
+        console.log(countryName);
+        nationBox.innerText = countryName;  //put country name into the div
+        callRestCountriesApi(countryName); //call the other api 'rest countries' and pass the country name as param
+    }
+
 }
 
 function showInfo(apiResponse){   
     const nation = document.getElementById("nation-name").innerText;
     console.log(nation);                                 //create references to div elements for facts
-    const flagBox = document.getElementById("nation-flag");
+    const flagBox = document.getElementById("nation-flag");   
     const flagSrc = document.getElementById("flag-src");
     const langBox = document.getElementById("nation-lan");
     const populationBox = document.getElementById("nation-pop");
@@ -75,7 +83,7 @@ function showInfo(apiResponse){
     const carBox = document.getElementById("nation-car");
     const capitalBox = document.getElementById("nation-capital");
     ////WORK IN PROGRESS
-    let capital = "";
+    let capital = "";                      //declare all the variables
     let flag = "";
     let currency = "";
     let lang ="";
@@ -83,36 +91,38 @@ function showInfo(apiResponse){
     let car = "";
     let area ="";
     
-    console.log(apiResponse);
-    for(let i in apiResponse){
-       capital = apiResponse[0].capital;
-       lang = Object.values(apiResponse[0].languages);
-       population = apiResponse[0].population;
-       flag = apiResponse[0].flags.png;
-       currency = Object.values(apiResponse[0].currencies)[0].name;
-        area = apiResponse[0].area;
-        car = apiResponse[0].car.side;
+    // FIXME: IRAN bug
+    // FIXME: CONGO bug
+    console.log(apiResponse);          
+    for(let i in apiResponse){                //loop through the json api response
+       capital = apiResponse[0].capital;                            // first capital
+       lang = Object.values(apiResponse[0].languages);         //get all languages in an array
+       population = apiResponse[0].population;          //get first population
+       flag = apiResponse[0].flags.png;           //get flag
+       currency = Object.values(apiResponse[0].currencies)[0].name;        //get currency name first item, in array
+        area = apiResponse[0].area;                   //get first area
+        car = apiResponse[0].car.side;                //get first car side
     }
     
     
-    flagSrc.src = flag;
-    for(let j in lang){
+    flagSrc.src = flag;                               //show the flag src 
+    for(let j in lang){                                               //show the languages based on how many there are
         if(lang.length >=3){
-            langBox.innerText = lang[0]+" "+lang[1]+" "+lang[2];
+            langBox.innerText = lang[0]+" "+lang[1]+" "+lang[2];          //show 3 languages
         }
         else if(lang.length ==2){
-            langBox.innerText = lang[0]+" "+lang[1];
+            langBox.innerText = lang[0]+" "+lang[1];   //show 2 languages
         }
         else{
-            langBox.innerText = lang[0];
+            langBox.innerText = lang[0];              //show one language
         }
         
     }
-    populationBox.innerText = population;
-    currencyBox.innerText = currency;
-    areaBox.innerText = area;
-    carBox.innerText = car;
-    capitalBox.innerText =capital;
+    populationBox.innerText = population;       //show population
+    currencyBox.innerText = currency;         //show currency
+    areaBox.innerText = area;             //show are in km
+    carBox.innerText = car;               //show car driving side
+    capitalBox.innerText =capital;          //show capital
 
 
 
