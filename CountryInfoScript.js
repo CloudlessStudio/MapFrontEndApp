@@ -27,12 +27,12 @@ function onMapClick(e) {
     popup
         .setLatLng(loc)
         .setContent("This location is: " + LATITUDE+","+LONGITUDE)     //show user where they clicked
-        .openOn(map);   //show this on the map
-    callGeoNamesApi(LATITUDE,LONGITUDE);  //call geonames api
+        .openOn(map);                                                   //show this on the map
+    callGeoNamesApi(LATITUDE,LONGITUDE);                                //call geonames api
     
 }
 
-function callGeoNamesApi(LT,LN){   // call geonames api with lat and lon values from our map
+function callGeoNamesApi(LT,LN){      // call geonames api with lat and lon values from our map
     console.log("http://api.geonames.org/countrySubdivisionJSON?lat="+LT+"&lng="+LN+"&username=cloudlessstudio") //test case
     fetch("http://api.geonames.org/countrySubdivisionJSON?lat="+LT+"&lng="+LN+"&username=cloudlessstudio") //get the name data of our country based on lat and lon
     .then((r) => r.json())  //convert d for data into json obj
