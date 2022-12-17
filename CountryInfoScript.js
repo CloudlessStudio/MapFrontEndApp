@@ -7,7 +7,9 @@
 //read docs of this api at https://leafletjs.com/reference.html
 //--------------------------------------------------------------
 let j = 0; //global var for looping through the countries
-var map = L.map('map').setView([51.505, -0.09], 5);  ///initialize map start point is england. 
+
+var map = L.map('map', {minZoom: 3,maxZoom: 7}).setView([51.505, -0.09], 3);  ///initialize map start point is england. 
+//map.setMaxBounds(map.getBounds());
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 maxZoom: 19,
 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'   //creating the look of the map, with attribution
