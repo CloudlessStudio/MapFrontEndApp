@@ -8,10 +8,18 @@
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossorigin=""></script>
-
         
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
 
         <style>
+            *{
+                font-family: 'Roboto', sans-serif;
+            }
+
             .main-container{
                 margin: auto;
                 width: 50%;
@@ -21,7 +29,8 @@
             .map{
                 /* margin: auto; */
                 height: 400px;
-                width: 400px;
+                width: 100%;
+                background-color: aquamarine;
     
             }
 
@@ -29,14 +38,14 @@
                 font-size: 100px;
             }
             .horizontal-container{
-                display: flex;
+                display: block;
                border-radius: 5px;
                 border-width: 5px;
                 border-style: solid;
                 color: #000;
             }
             .facts-container{
- 
+                
               }
         </style>
 
@@ -45,18 +54,24 @@
     <body>
         <div class ="main-container">
             <div class="Title">
-                <h1>Country Info</h1>
+                <h1>COUNTRY INFO</h1>
             </div>
             <div class ="horizontal-container" id="hor-con">
                 <div class="map" id ="map"></div>
                 <div class="facts-container" id="facts-container">
-<<<<<<< Updated upstream
+
                     <div class ="nation" id="nation-name"> 
-=======
+
 
                     <div class="flag-container">
                         <div class ="flag" id="nation-flag">
                             <img id="flag-src" style="padding:1px;border:thin solid black;">
+
+
+                    <div class="flag-container">
+                        <div class ="flag" id="nation-flag">
+                            <img id="flag-src">
+
                         </div>
                     </div>
 
@@ -99,8 +114,9 @@
                         </div>
 
 
->>>>>>> Stashed changes
+
                     </div>
+
                 </div>
             </div>
         </div>
