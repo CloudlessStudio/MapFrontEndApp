@@ -8,10 +8,18 @@
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossorigin=""></script>
-
         
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
 
         <style>
+            *{
+                font-family: 'Roboto', sans-serif;
+            }
+
             .main-container{
                 margin: auto;
                 width: 50%;
@@ -21,7 +29,7 @@
             .map{
                 /* margin: auto; */
                 height: 400px;
-                width: 400px;
+                width: 100%;
     
             }
 
@@ -29,7 +37,7 @@
                 font-size: 50px;
             }
             .horizontal-container{
-                display: flex;
+                display: block;
                border-radius: 5px;
                 border-width: 5px;
                 border-style: solid;
@@ -45,28 +53,59 @@
     <body>
         <div class ="main-container">
             <div class="Title">
-                <h1>Country Info</h1>
+                <h1>COUNTRY INFO</h1>
             </div>
             <div class ="horizontal-container" id="hor-con">
                 <div class="map" id ="map"></div>
                 <div class="facts-container" id="facts-container">
-                    <div class ="nation" id="nation-name"> 
+
+                    <div class="flag-container">
+                        <div class ="flag" id="nation-flag">
+                            <img id="flag-src">
+                        </div>
                     </div>
-                    <div class ="flag" id="nation-flag">
-                        <img id="flag-src">
+
+
+                    <div class = "fact-box">
+
+                        <div class = "n-name">NAME: 
+                            <div class ="nation" id="nation-name"> 
+                            </div>
+                        </div>
+                        
+                        <div class = "n-capital">CAPITAL:
+                            <div class="capital" id="nation-capital">
+                            </div>
+                        </div>
+
+                        <div class = "n-languages">LANGUAGES:
+                            <div class="language" id="nation-lan">
+                            </div>
+                        </div>
+    
+                        <div class = "n-currency">CURRENCY:
+                            <div class="currency" id="nation-cur">
+                            </div>
+                        </div>
+
+                        <div class = "n-population">POPULATION:
+                            <div class="population" id="nation-pop">
+                            </div>
+                        </div>
+
+                        <div class="n-area">AREA:
+                            <div class="area" id="nation-area">
+                            </div>
+                        </div>
+
+                        <div class = "n-car">DRIVING SIDE:
+                            <div class="car" id="nation-car">
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div class="language" id="nation-lan">
-                    </div>
-                    <div class="currency" id="nation-cur">
-                    </div>
-                    <div class="population" id="nation-pop">
-                    </div>
-                    <div class="car" id="nation-car">
-                    </div>
-                    <div class="capital" id="nation-capital">
-                    </div>
-                    <div class="area" id="nation-area">
-                    </div>
+
                 </div>
             </div>
         </div>
