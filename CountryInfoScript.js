@@ -7,7 +7,7 @@
 //read docs of this api at https://leafletjs.com/reference.html
 //--------------------------------------------------------------
 let j = 0; //global var for looping through the countries
-
+let info_message = true;
 var map = L.map('map', {minZoom: 3,maxZoom: 7}).setView([51.505, -0.09], 3);  ///initialize map start point is england. 
 //map.setMaxBounds(map.getBounds());
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -84,7 +84,12 @@ function showName(apiResponse){
 
 }
 
-function showInfo(apiResponse){   
+function showInfo(apiResponse){
+    if(info_message){
+        document.getElementById("info").remove(); 
+        info_message =false;
+    }
+     
     const nation = document.getElementById("nation-name").innerText;
     console.log(nation);                                 //create references to div elements for facts
     const flagBox = document.getElementById("nation-flag");   
@@ -118,6 +123,7 @@ function showInfo(apiResponse){
     
     
     flagSrc.src = flag;                               //show the flag src 
+    flagSrc.removeAttribute("hidden");
     for(let j in lang){                                               //show the languages based on how many there are
         if(lang.length >=3){
             langBox.innerText = lang[0]+", "+lang[1]+", "+lang[2];          //show 3 languages

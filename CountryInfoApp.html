@@ -45,8 +45,58 @@
                 color: #000;
             }
             .facts-container{
-                
+                display: flex;
+                justify-content: space-around;
               }
+            .fact-box{
+                width: 40%;
+                
+            }
+            .n-name{
+                display: flex;
+                border-width: 3px;
+                border-style: solid;
+                color: #000;
+                
+            }
+            .n-capital{
+                display: flex;
+                border-width: 3px;
+                border-style: solid;
+                color: #000;
+            }
+            .n-languages{
+                display: flex;
+                border-width: 3px;
+                border-style: solid;
+                color: #000;
+            }
+            .n-currency{
+                display: flex;
+                border-width: 3px;
+                border-style: solid;
+                color: #000;
+            }
+            .n-population{
+                display: flex;
+                border-width: 3px;
+                border-style: solid;
+                color: #000;
+            }
+            .n-area{
+                display: flex;
+                border-width: 3px;
+                border-style: solid;
+                color: #000;
+            }
+            .n-car{
+                display: flex;
+                border-width: 3px;
+                border-style: solid;
+                color: #000;
+            }
+            
+
         </style>
 
     </head>
@@ -62,7 +112,8 @@
 
                     <div class="flag-container">
                         <div class ="flag" id="nation-flag">
-                            <img id="flag-src" style="padding:1px;border:thin solid black;">
+                            <div class="info" id="info">CLICK A COUNTRY TO FIND OUT MORE ABOUT IT!</div>
+                            <img hidden id="flag-src" style="padding:1px;border:thin solid black;">
                         </div>
                     </div>
 
@@ -70,37 +121,37 @@
                     <div class = "fact-box">
 
                         <div class = "n-name">NAME: 
-                            <div class ="nation" id="nation-name"> 
+                            <div class ="nation" id="nation-name" style="padding-left: 15px;"> 
                             </div>
                         </div>
                         
                         <div class = "n-capital">CAPITAL:
-                            <div class="capital" id="nation-capital">
+                            <div class="capital" id="nation-capital" style="padding-left: 15px;">
                             </div>
                         </div>
 
                         <div class = "n-languages">LANGUAGES:
-                            <div class="language" id="nation-lan">
+                            <div class="language" id="nation-lan" style="padding-left: 15px;">
                             </div>
                         </div>
     
                         <div class = "n-currency">CURRENCY:
-                            <div class="currency" id="nation-cur">
+                            <div class="currency" id="nation-cur" style="padding-left: 15px;">
                             </div>
                         </div>
 
                         <div class = "n-population">POPULATION:
-                            <div class="population" id="nation-pop">
+                            <div class="population" id="nation-pop" style="padding-left: 15px;">
                             </div>
                         </div>
 
-                        <div class="n-area">AREA:
-                            <div class="area" id="nation-area">
+                        <div class="n-area">AREA(KM):
+                            <div class="area" id="nation-area" style="padding-left: 15px;">
                             </div>
                         </div>
 
                         <div class = "n-car">DRIVING SIDE:
-                            <div class="car" id="nation-car">
+                            <div class="car" id="nation-car" style="padding-left: 15px;">
                             </div>
                         </div>
 
